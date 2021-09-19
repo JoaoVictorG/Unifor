@@ -6,14 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body style="background-color: black;">
-    <canvas id="bola"></canvas>
+<body>
+    <canvas id="retangulo">
+        <canvas id="bola"></canvas>
+    </canvas>
     <script>
-        const canvas = document.getElementById("bola");
+        const canvas = document.getElementById('retangulo');
         const ctx = canvas.getContext('2d');
-        
+
+        ctx.fillStyle = 'green';
+        ctx.fillRect(10, 10, 400, 400);
+        const canvasBola = document.getElementById('bola');
+        const ctxBola = canvas.getContext('2d');
+
         ctx.fillStyle = 'blue';
-        ctx.fillRect(0,0,100,100);
+        ctx.fillRect(10, 10, 50, 50); 
         
     </script>
 </body>
