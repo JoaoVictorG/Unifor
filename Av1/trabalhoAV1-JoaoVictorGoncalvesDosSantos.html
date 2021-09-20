@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Movimentação</title>
+	<style>
+        body{
+            background-color: black;
+        }
+		#bloco {
+			height: 50px;
+			width: 50px;
+			background-color: blue;
+			position:absolute;
+            border-radius: 50%;
+			left:0px;
+			top:0px;
+		}
+	</style>
 </head>
 <body>
-    <canvas id="retangulo">
-        <canvas id="bola"></canvas>
-    </canvas>
+    <div class="retangulo">
+        <div id="bloco"></div>
+    </div>
     <script>
-        const canvas = document.getElementById('retangulo');
-        const ctx = canvas.getContext('2d');
-
-        ctx.fillStyle = 'green';
-        ctx.fillRect(10, 10, 400, 400);
-        const canvasBola = document.getElementById('bola');
-        const ctxBola = canvas.getContext('2d');
-
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(10, 10, 50, 50); 
-        
-    </script>
+		var dx;
+		var dy;
+		var px;
+		var py;
+		var vel;
+		var obj;
+		var tmp;
+		function iniciar() {
+			x = 0;
+			y = 0;
+			px = 0;
+			py = 0;
+			vel = 10;
+			obj = document.getElementById('bloco');
+			document.addEventListener("keydown", teclaMovimentar);
+			document.addEventListener("keyup", teclaDesativar);
+			tmp = setInterval(enterFrame, 20);
+		}
+		function teclaMovimentar() {
+			var tecla = event.keyCode;
+			if(tecla==37 || tecla==65) {
+				x -= 1;
+			} else if (tecla==38 || tecla==87) {
+				y -= 1;
+			} else if (tecla==39 || tecla==68) {
+				x += 1;
+			} else if (tecla==40 || tecla==83) {
+				y += 1;
+			}
+		}
+		function teclaDesativar() {
+			var tecla = event.keyCode
+			if(tecla==37 || tecla==65) {
+				x -= 0;
+			} else if (tecla==38 || tecla==87) {
+				y -= 0;
+			} else if (tecla==39 || tecla==68) {
+				x += 0;
+			} else if (tecla==40 || tecla==83) {
+				y += 0;
+            }
+		}
+		function enterFrame() {
+			px=x*vel;
+			py=y*vel;
+			obj.style.left=px+"px";
+			obj.style.top=py+"px";
+		}
+		window.addEventListener("load", iniciar);
+	</script>
 </body>
 </html>
